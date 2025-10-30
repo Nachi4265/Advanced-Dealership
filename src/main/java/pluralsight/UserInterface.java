@@ -101,7 +101,7 @@ public class UserInterface {
     private void displayVehiclesHelper(ArrayList<Vehicle>vehicleToList){
         for(Vehicle v : vehicleToList){
             System.out.println(
-                    v.getVIN()
+                             v.getVIN()
                     + " | " +v.getYear()
                     + " | " +v.getMake()
                     + " | " +v.getModel()

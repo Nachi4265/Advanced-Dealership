@@ -63,11 +63,16 @@ public class SalesContract extends Contract {
 
         //Do I need an instance of dealership to take a look at my vehicles price?
 
-        if(finance = true){
+        if(finance == true){
             if(getVehicleSold().getPrice()>10_000){
-                
+               double loanAmount = getVehicleSold().getPrice();
+               double intrestRate = 4.25;
+               int loanTermMonths = 2;
 
+               double monthlyPayment
             }
+
+            if(getVehicleSold().getPrice())
 
         }
         return monthlyPayment;
