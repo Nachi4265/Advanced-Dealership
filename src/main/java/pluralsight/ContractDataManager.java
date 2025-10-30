@@ -1,5 +1,9 @@
 package pluralsight;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
 public class ContractDataManager {
 
 //    Phase 2
@@ -12,6 +16,30 @@ public class ContractDataManager {
 
         if(Contract instanceof SalesContract){
             //todo filewriter for sale
+
+            try{
+                FileWriter fileWriter = new FileWriter("Contracts.csv");
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+                //Write the Sales Contract information
+                String salesContract=
+                        "SALE"
+                        + "|" + contract.getContractDate()
+                        + "|" + contract.getCustomerName()
+                        + "|" + contract.getCustomerEmail()
+                        + "|" + contract.getVehicleSold().getVIN()
+                        + "|" + contract.getVehicleSold().getYear()
+                        + "|" + contract.getVehicleSold().getMake()
+                        + "|" + contract.getVehicleSold().getModel()
+                        + "|" + contract.getVehicleSold().getVehicleType()
+                        + "|" + contract.getVehicleSold().getColor()
+                        + "|" + contract.getVehicleSold().getOdometer()
+                        + "|" + contract.getVehicleSold().getPrice()
+                        + "|" + 
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
 
         if(Contract instanceof LeaseContract){
