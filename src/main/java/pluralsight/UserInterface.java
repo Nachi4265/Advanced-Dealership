@@ -40,6 +40,7 @@ public class UserInterface {
             7 - List ALL vehicles\n
             8 - Add a vehicle\n
             9 - Remove a vehicle\n
+            10- Sell/Lease Vehicle\n
             99 - Quit
             """;
 
@@ -75,6 +76,9 @@ public class UserInterface {
                 case 9:
                     processRemoveVehicleRequest();
                     break;
+                case 10:
+                    processSellLeaseVehicle();
+                    break;
                 case 99:
                     System.exit(0);
                     break;
@@ -107,6 +111,7 @@ public class UserInterface {
                     + " | " + v.getPrice());
         }
     }
+
 
 
 
@@ -209,5 +214,13 @@ public class UserInterface {
                 System.out.println("Could not find that Vehicles VIN");
         }
     }
+
+
+
+    //SELL OR LEASE VEHICLE
+    private void processSellLeaseVehicle() {
+        //TODO
+    }
+
 
 }
