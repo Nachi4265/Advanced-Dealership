@@ -6,10 +6,11 @@ public class LeaseContract extends Contract{
     private double leaseFee; // (7% of the original price)
 
     public LeaseContract(String contractDate, String customerName, String customerEmail,
-                         String vehicleSold, double endingValue, double leaseFee) {
+                         Vehicle vehicleSold) {
         super(contractDate, customerName, customerEmail, vehicleSold);
-        this.endingValue = endingValue;
-        this.leaseFee = leaseFee;
+
+        this.endingValue = vehicleSold.getPrice() / 2; // (50% of the original price)
+        this.leaseFee = vehicleSold.getPrice() * 0.07; // (7% of the original price)
     }
 
     public double getEndingValue() {
@@ -30,16 +31,20 @@ public class LeaseContract extends Contract{
 
 
     @Override public double getMonthlyPayment(){
-        //todo
+        //All leases are financed at 4.0% for 36 months
+
+        double leaseAmount = getTotalPrice();
+        int leaseTerm = 36;
+        double interestRate = 4/100;
+        double totalAmount = (leaseAmount*interestRate)+ leaseAmount;
+
+        double monthlyPayment = totalAmount / leaseTerm;
+
+        return monthlyPayment;
     }
 
-    @Override public double getTotalPrice(){
-        //todo
+    @Override public double getTotalPrice() {
+        double totalPrice = endingValue + leaseFee;
+        return totalPrice;
     }
-
-
-//• Monthly payment based on
-//• All leases are financed at 4.0% for 36 months
-
-
 }

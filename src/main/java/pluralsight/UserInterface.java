@@ -219,7 +219,7 @@ public class UserInterface {
 
     //SELL OR LEASE VEHICLE
     private void processSellLeaseVehicle() {
-        //TODO
+        //TODO ask user information.
     }
 
 

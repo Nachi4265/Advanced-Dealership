@@ -13,11 +13,12 @@ public class SalesContract extends Contract {
                             //• Otherwise they are at 5.25% for 24 month
 
 
-    public SalesContract(String contractDate, String customerName, String customerEmail, String vehicleSold, double salesTax, double recordingFee, double processingFee, boolean finance) {
+    //The contract only has the information that user would need, no business side.
+    public SalesContract(String contractDate, String customerName, String customerEmail, Vehicle vehicleSold, boolean finance) {
         super(contractDate, customerName, customerEmail, vehicleSold);
-        this.salesTax = salesTax;
-        this.recordingFee = recordingFee;
-        this.processingFee = processingFee;
+        this.salesTax = 5 / 100; //%5 is 5/100 = 0.05
+        this.recordingFee = 100.00; //todo calc
+        this.processingFee = (vehicleSold.getPrice() < 10_000) ? 295 : 495 ;
         this.finance = finance;
     }
 
@@ -64,22 +65,35 @@ public class SalesContract extends Contract {
         //Do I need an instance of dealership to take a look at my vehicles price?
 
         if(finance == true){
-            if(getVehicleSold().getPrice()>10_000){
-               double loanAmount = getVehicleSold().getPrice();
-               double intrestRate = 4.25;
-               int loanTermMonths = 2;
+            if(getTotalPrice() >= 10_000){
 
-               double monthlyPayment
+               double loanAmount = getTotalPrice();
+               double interestRate = 4.25 / 100;
+               int loanTermMonths = 48;
+
+               double totalLoanAmount = (loanAmount * interestRate) + loanAmount;
+               double monthlyPayment = totalLoanAmount / loanTermMonths;
+               return monthlyPayment;
+
+            }else{
+
+                double loanAmount = getTotalPrice();
+                double interestRate = 5.25 / 100;
+                int loanTermMonths = 24;
+
+                double totalLoanAmount = (loanAmount*interestRate) + loanAmount;
+                double monthlyPayment = totalLoanAmount / loanTermMonths;
+
+                return monthlyPayment;
             }
-
-            if(getVehicleSold().getPrice())
-
+        } else {
+            return 0;
         }
-        return monthlyPayment;
     }
 
     @Override public double getTotalPrice(){
-        //todo
-    }
 
+        return processingFee + recordingFee + salesTax + getVehicleSold().getPrice();
+
+    }
 }

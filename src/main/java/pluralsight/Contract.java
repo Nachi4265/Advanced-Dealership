@@ -6,16 +6,16 @@ public abstract class Contract {
     private String customerName;
     private String customerEmail;
     private Vehicle vehicleSold;
-    private double totalPrice;
-    private double monthlyPayment;
+//    private double totalPrice;
+//    private double monthlyPayment;
 
-    public Contract(String contractDate, String customerName, String customerEmail, Vehicle vehicleSold, double totalPrice, double monthlyPayment) {
+    public Contract(String contractDate, String customerName, String customerEmail, Vehicle vehicleSold) {
         this.contractDate = contractDate;
         this.customerName = customerName;
         this.customerEmail = customerEmail;
         this.vehicleSold = vehicleSold;
-        this.totalPrice = totalPrice;
-        this.monthlyPayment = monthlyPayment;
+//        this.totalPrice = totalPrice;
+//        this.monthlyPayment = monthlyPayment;
     }
 
     public String getContractDate() {
