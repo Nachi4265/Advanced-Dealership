@@ -41,6 +41,7 @@ public class LeaseContract extends Contract{
         double monthlyPayment = totalAmount / leaseTerm;
 
         return monthlyPayment;
+
     }
 
     @Override public double getTotalPrice() {

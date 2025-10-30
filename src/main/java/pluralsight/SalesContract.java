@@ -67,24 +67,12 @@ public class SalesContract extends Contract {
         if(finance == true){
             if(getTotalPrice() >= 10_000){
 
-               double loanAmount = getTotalPrice();
-               double interestRate = 4.25 / 100;
-               int loanTermMonths = 48;
-
-               double totalLoanAmount = (loanAmount * interestRate) + loanAmount;
-               double monthlyPayment = totalLoanAmount / loanTermMonths;
-               return monthlyPayment;
+               return LoanCalculator.calculateMonthlyPayment(4.25,getTotalPrice(),48);
 
             }else{
 
-                double loanAmount = getTotalPrice();
-                double interestRate = 5.25 / 100;
-                int loanTermMonths = 24;
+                return LoanCalculator.calculateMonthlyPayment(5.25,getTotalPrice(),24);
 
-                double totalLoanAmount = (loanAmount*interestRate) + loanAmount;
-                double monthlyPayment = totalLoanAmount / loanTermMonths;
-
-                return monthlyPayment;
             }
         } else {
             return 0;
@@ -92,8 +80,6 @@ public class SalesContract extends Contract {
     }
 
     @Override public double getTotalPrice(){
-
         return processingFee + recordingFee + salesTax + getVehicleSold().getPrice();
-
     }
 }
