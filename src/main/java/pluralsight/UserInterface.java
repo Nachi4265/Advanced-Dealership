@@ -241,69 +241,72 @@ public class UserInterface {
     }
 
     private void makeLeaseContract() {
+        System.out.println("HERE IS A FULL LIST OF VEHICLES!");
+        System.out.println("---------------------------------");
 
-        //Display all Vehicles
-        displayVehiclesHelper(dealership.getAllVehicles());
+//        //Display all Vehicles
+//        displayVehiclesHelper(dealership.getAllVehicles());
+//
+//        //Find the vehicle we are selling by vin
+//        int vin = InputCollector.promptForInt("Enter vehicle vin you want to sell");
+//
+//        Vehicle vehicleToSell = dealership.getVehiclesByVIN(vin);
+//
+//
+//
+//
+//        //gather information for the contract
+//        String contractDate  = InputCollector.promptForString("Enter Contract Date (YYYY-mm-dd)");
+//        String contractName  = InputCollector.promptForString("Enter customer name");
+//        String contractEmail = InputCollector.promptForString("Enter email (SomeExample@gmail.com)");
+//
+//
+//        //Make Contract Data Manager
+//        ContractDataManager contractDataManager = new ContractDataManager();
+//
+//        //Create Lease Contract
+//        LeaseContract leaseContract = new LeaseContract(contractDate,contractName,contractEmail,vehicleToSell);
+//
+//        //use Data Manager to save contract.
+//        contractDataManager.saveContract(leaseContract);
+//        dealership.remove(vehicleToSell);
 
-        //Find the vehicle we are selling by vin
-        int vin = InputCollector.promptForInt("Enter vehicle vin you want to sell");
+        int vin = InputCollector.promptForInt("Enter vehicle VIN you want to sell: ");
+        Vehicle foundVehicle = null;
 
-        Vehicle vehicleToSell = dealership.getVehiclesByVIN(vin);
+        // loop through inventory to find VIN
+        for (Vehicle v : dealership.getAllVehicles()){
 
+            if (v.getVIN() == vin) {
+                foundVehicle = v;
+                break;
+            }
+        }
 
+        if (foundVehicle != null) {
+            System.out.println("Vehicle found: " + foundVehicle);
+            String contractDate  = InputCollector.promptForString("Enter Contract Date (YYYY-mm-dd)");
+            String contractName  = InputCollector.promptForString("Enter customer name");
+            String contractEmail = InputCollector.promptForString("Enter email (SomeExample@gmail.com)");
 
-        //gather information for the contract
-        String contractDate  = InputCollector.promptForString("Enter Contract Date (YYYY-mm-dd)");
-        String contractName  = InputCollector.promptForString("Enter customer name");
-        String contractEmail = InputCollector.promptForString("Enter email (SomeExample@gmail.com)");
+            // Make contract
+            LeaseContract leaseContract = new LeaseContract(contractDate, contractName, contractEmail, foundVehicle);
+            System.out.println("Lease contract created successfully for " + contractName + "!");
 
+            // Make Contract Data Manager
+            ContractDataManager contractDataManager = new ContractDataManager();
 
-        //Make Contract Data Manager
-        ContractDataManager contractDataManager = new ContractDataManager();
+            contractDataManager.saveContract(leaseContract);
+            dealership.remove(foundVehicle);
 
-        //Create Lease Contract
-        LeaseContract leaseContract = new LeaseContract(contractDate,contractName,contractEmail,vehicleToSell);
-
-        //use Data Manager to save contract.
-        contractDataManager.saveContract(leaseContract);
-        dealership.remove(vehicleToSell);
-
-
+            DealershipFileManager dealershipFileManager = new DealershipFileManager();
+            dealershipFileManager.saveDealership(dealership);
+        }
 
     }
 
     private void makeSalesContract() {
-
-        //Display all Vehicles
-        displayVehiclesHelper(dealership.getAllVehicles());
-
-        //Find the vehicle we are selling by vin
-        int vin = InputCollector.promptForInt("Enter vehicle vin you want to sell");
-        Vehicle vehicleToSell = dealership.getVehiclesByVIN(vin);
-
-        //gather information for the contract
-        String contractDate  = InputCollector.promptForString("Enter Contract Date (YYYY-mm-dd)");
-        String contractName  = InputCollector.promptForString("Enter customer name");
-        String contractEmail = InputCollector.promptForString("Enter email (SomeExample@gmail.com)");
-        String fianceOption = InputCollector.promptForString("Finance Vehicle (Y/N)");
-
-        //Give the user the option to finance or not, If they type yes it will return true otherwise false
-        boolean isFinaced = fianceOption.equalsIgnoreCase("yes") ? true : false;
-
-        //Make Contract Data Manager
-        ContractDataManager contractDataManager = new ContractDataManager();
-
-        //Create Lease Contract
-        SalesContract salesContract = new SalesContract(contractDate,contractName,contractEmail,vehicleToSell,isFinaced);
-
-        //use Data Manager to save contract.
-        contractDataManager.saveContract(salesContract);
-
-
-        //TEST TO SAVE DEALERSHIP AFTER REMOVING VEHICLE
-        dealership.remove(vehicleToSell);
-        DealershipFileManager dealershipFileManager1 = new DealershipFileManager();
-        dealershipFileManager1.saveDealership(dealership);
+        //todo
     }
 
 

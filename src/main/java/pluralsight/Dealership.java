@@ -147,24 +147,55 @@ public class Dealership {
         return vehiclesTypeResult;
     }
 
+//    //todo bug not working properly
+//    public Vehicle getVehiclesByVIN(int vin) {
+//
+//        Vehicle vehicleByVin;
+//
+//        for(Vehicle v : inventory){
+//            if(vin == v.getVIN()){
+//                vehicleByVin =  v;
+//            } else {
+//                System.out.println("Vehicle Not found");
+//            }
+//        }
+//
+////        if(vinFound == false){
+////            System.out.println("Vehicle Not found");
+////        }
+//
+//        return null;
+//    }
 
-    public Vehicle getVehiclesByVIN(int vin) {
-
-        Vehicle vehicleByVin;
-
-        for(Vehicle v : inventory){
-            if(vin == v.getVIN()){
-                return v;
-            }
-
-            //todo ERROR PRINTS IN LOOP 
-            else {
-                System.out.println("Vehicle VIN not found");
-            }
-        }
-        return null;
-    }
-
+//    public Vehicle getVehiclesByVIN(int vin) {
+//
+//        // empty placeholder for when we find a vehicle
+//        Vehicle foundVehicle = null;
+//
+//        //look for vehicle
+//        for(Vehicle v : inventory){
+//            if(vin == v.getVIN()){
+//                // store the found vehicle
+//                foundVehicle = v;
+//                break;
+//            }
+//        }
+//        if (foundVehicle != null) {
+//            System.out.println("Vehicle found: " + foundVehicle);
+//
+//
+//        }else {
+//            System.out.println("Vehicle with VIN: " + vin + " not found!");
+//        }
+//
+//        return foundVehicle;
+//
+//
+//
+//
+//
+//        return null;
+//    }
 
     @Override
     public String toString() {
