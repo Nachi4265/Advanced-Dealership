@@ -1,6 +1,7 @@
 package pluralsight;
 
 import javax.swing.event.DocumentEvent;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class UserInterface {
@@ -77,7 +78,7 @@ public class UserInterface {
                     processRemoveVehicleRequest();
                     break;
                 case 10:
-                    processSellLeaseVehicle();
+                    processSellLeaseVehicleMenu();
                     break;
                 case 99:
                     System.exit(0);
@@ -218,8 +219,60 @@ public class UserInterface {
 
 
     //SELL OR LEASE VEHICLE
-    private void processSellLeaseVehicle() {
-        //TODO ask user information.
+    private void processSellLeaseVehicleMenu() {
+        System.out.println("Would you like to sell a Vehicle or Lease?");
+        System.out.println("1. Sell ");
+        System.out.println("2. Lease ");
+
+        int userChoice = InputCollector.promptForInt("Enter a command");
+
+        while(true){
+            switch (userChoice){
+                case 1:
+                    makeSalesContract();
+                    break;
+                case 2:
+                    makeLeaseContract();
+                    break;
+                case 3:
+                    System.out.println("Invalid entry");
+            }
+        }
+    }
+
+    private void makeLeaseContract() {
+        //Find the vehicle we are selling by vin
+        int vin = InputCollector.promptForInt("Enter vehicle vin you want to sell");
+        Vehicle vehicleToSell = dealership.getVehiclesByVIN(vin);
+
+
+        //gather information for the contract
+        String contractDate  = InputCollector.promptForString("Enter Contract Date (YYYY-mm-dd)");
+        String contractName  = InputCollector.promptForString("Enter customer name");
+        String contractEmail = InputCollector.promptForString("Enter email (SomeExample@gmail.com)");
+
+       LeaseContract leaseContract = new LeaseContract(contractDate,contractName,contractEmail,vehicleToSell);
+       
+    }
+
+
+    private SalesContract makeSalesContract() {
+        //Find the vehicle we are selling by vin
+        int vin = InputCollector.promptForInt("Enter vehicle vin you want to sell");
+        Vehicle vehicleToSell = dealership.getVehiclesByVIN(vin);
+
+
+        //gather information for the contract
+        String contractDate  = InputCollector.promptForString("Enter Contract Date (YYYY-mm-dd)");
+        String contractName  = InputCollector.promptForString("Enter customer name");
+        String contractEmail = InputCollector.promptForString("Enter email (SomeExample@gmail.com)");
+        String fiannceOption = InputCollector.promptForString("Finace Vehicle (Y/N)");
+
+        //Give the user the option to finance or not, If they type yes it will return true otherwise false
+        boolean isFinaced = fiannceOption.equalsIgnoreCase("yes") ? true : false;
+
+        SalesContract salesContract = new SalesContract(contractDate,contractName,contractEmail,vehicleToSell,isFinaced);
+        return salesContract;
     }
 
 

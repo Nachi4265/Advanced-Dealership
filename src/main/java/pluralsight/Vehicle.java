@@ -3,8 +3,6 @@ public class Vehicle {
 
     //Private class variables
     private int VIN;
-
-
     private int year;
     private String make;
     private String model;

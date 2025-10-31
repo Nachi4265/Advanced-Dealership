@@ -147,6 +147,20 @@ public class Dealership {
         return vehiclesTypeResult;
     }
 
+
+    public Vehicle getVehiclesByVIN(int vin) {
+
+        Vehicle vehicleByVin;
+
+        for(Vehicle v : inventory){
+            if(vin == v.getVIN()){
+                return v;
+            }
+        }
+        return null;
+    }
+
+
     @Override
     public String toString() {
         return "Dealership{" +
@@ -156,4 +170,7 @@ public class Dealership {
                 ", inventory=" + inventory +
                 '}';
     }
+
+
+
 }
