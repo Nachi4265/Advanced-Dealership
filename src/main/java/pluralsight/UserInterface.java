@@ -230,10 +230,10 @@ public class UserInterface {
             switch (userChoice){
                 case 1:
                     makeSalesContract();
-                    break;
+                    return;
                 case 2:
                     makeLeaseContract();
-                    break;
+                    return;
                 case 3:
                     System.out.println("Invalid entry");
             }
@@ -241,9 +241,15 @@ public class UserInterface {
     }
 
     private void makeLeaseContract() {
+
+        //Display all Vehicles
+        displayVehiclesHelper(dealership.getAllVehicles());
+
         //Find the vehicle we are selling by vin
         int vin = InputCollector.promptForInt("Enter vehicle vin you want to sell");
+
         Vehicle vehicleToSell = dealership.getVehiclesByVIN(vin);
+
 
 
         //gather information for the contract
@@ -251,28 +257,53 @@ public class UserInterface {
         String contractName  = InputCollector.promptForString("Enter customer name");
         String contractEmail = InputCollector.promptForString("Enter email (SomeExample@gmail.com)");
 
-       LeaseContract leaseContract = new LeaseContract(contractDate,contractName,contractEmail,vehicleToSell);
-       
+
+        //Make Contract Data Manager
+        ContractDataManager contractDataManager = new ContractDataManager();
+
+        //Create Lease Contract
+        LeaseContract leaseContract = new LeaseContract(contractDate,contractName,contractEmail,vehicleToSell);
+
+        //use Data Manager to save contract.
+        contractDataManager.saveContract(leaseContract);
+        dealership.remove(vehicleToSell);
+
+
+
     }
 
+    private void makeSalesContract() {
 
-    private SalesContract makeSalesContract() {
+        //Display all Vehicles
+        displayVehiclesHelper(dealership.getAllVehicles());
+
         //Find the vehicle we are selling by vin
         int vin = InputCollector.promptForInt("Enter vehicle vin you want to sell");
         Vehicle vehicleToSell = dealership.getVehiclesByVIN(vin);
-
 
         //gather information for the contract
         String contractDate  = InputCollector.promptForString("Enter Contract Date (YYYY-mm-dd)");
         String contractName  = InputCollector.promptForString("Enter customer name");
         String contractEmail = InputCollector.promptForString("Enter email (SomeExample@gmail.com)");
-        String fiannceOption = InputCollector.promptForString("Finace Vehicle (Y/N)");
+        String fianceOption = InputCollector.promptForString("Finance Vehicle (Y/N)");
 
         //Give the user the option to finance or not, If they type yes it will return true otherwise false
-        boolean isFinaced = fiannceOption.equalsIgnoreCase("yes") ? true : false;
+        boolean isFinaced = fianceOption.equalsIgnoreCase("yes") ? true : false;
 
+        //Make Contract Data Manager
+        ContractDataManager contractDataManager = new ContractDataManager();
+
+        //Create Lease Contract
         SalesContract salesContract = new SalesContract(contractDate,contractName,contractEmail,vehicleToSell,isFinaced);
-        return salesContract;
+
+        //use Data Manager to save contract.
+        contractDataManager.saveContract(salesContract);
+
+
+        //TEST TO SAVE DEALERSHIP AFTER REMOVING VEHICLE
+        dealership.remove(vehicleToSell);
+        DealershipFileManager dealershipFileManager1 = new DealershipFileManager();
+        dealershipFileManager1.saveDealership(dealership);
     }
 
 

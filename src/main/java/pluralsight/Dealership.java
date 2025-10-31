@@ -156,6 +156,11 @@ public class Dealership {
             if(vin == v.getVIN()){
                 return v;
             }
+
+            //todo ERROR PRINTS IN LOOP 
+            else {
+                System.out.println("Vehicle VIN not found");
+            }
         }
         return null;
     }

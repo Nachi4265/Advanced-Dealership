@@ -57,8 +57,6 @@ public class ContractDataManager {
             }
         }
 
-
-
         //If it's Lease Contract
         if(contract instanceof LeaseContract){
             try{
