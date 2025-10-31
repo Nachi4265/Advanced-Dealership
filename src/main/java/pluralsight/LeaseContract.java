@@ -37,7 +37,7 @@ public class LeaseContract extends Contract{
     }
 
     @Override public double getTotalPrice() {
-        double totalPrice = endingValue + leaseFee;
-        return totalPrice;
+
+        return (getVehicleSold().getPrice() - endingValue) + leaseFee;
     }
 }

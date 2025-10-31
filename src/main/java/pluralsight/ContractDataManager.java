@@ -14,36 +14,86 @@ public class ContractDataManager {
 
     public void saveContract(Contract contract){
 
-        if(Contract instanceof SalesContract){
-            //todo filewriter for sale
-
+        //If it's a Sales Contract
+        if(contract instanceof SalesContract){
             try{
-                FileWriter fileWriter = new FileWriter("Contracts.csv");
+                FileWriter fileWriter = new FileWriter("Contracts.csv" , true);
                 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
+                //Casting our contract
+              //Type of Variable _ varible name = (Cast Type) original type
+                SalesContract sale = (SalesContract) contract;
+
                 //Write the Sales Contract information
-                String salesContract=
+                String saleContractData=
                         "SALE"
-                        + "|" + contract.getContractDate()
-                        + "|" + contract.getCustomerName()
-                        + "|" + contract.getCustomerEmail()
-                        + "|" + contract.getVehicleSold().getVIN()
-                        + "|" + contract.getVehicleSold().getYear()
-                        + "|" + contract.getVehicleSold().getMake()
-                        + "|" + contract.getVehicleSold().getModel()
-                        + "|" + contract.getVehicleSold().getVehicleType()
-                        + "|" + contract.getVehicleSold().getColor()
-                        + "|" + contract.getVehicleSold().getOdometer()
-                        + "|" + contract.getVehicleSold().getPrice()
-                        + "|" + 
+                        + "|" + sale.getContractDate()
+                        + "|" + sale.getCustomerName()
+                        + "|" + sale.getCustomerEmail()
+                        + "|" + sale.getVehicleSold().getVIN()
+                        + "|" + sale.getVehicleSold().getYear()
+                        + "|" + sale.getVehicleSold().getMake()
+                        + "|" + sale.getVehicleSold().getModel()
+                        + "|" + sale.getVehicleSold().getVehicleType()
+                        + "|" + sale.getVehicleSold().getColor()
+                        + "|" + sale.getVehicleSold().getOdometer()
+                        + "|" + sale.getVehicleSold().getPrice()
+                        + "|" + sale.getSalesTax()
+                        + "|" + sale.getRecordingFee()
+                        + "|" + sale.getProcessingFee()
+                        + "|" + sale.getTotalPrice()
+                        + "|" + sale.isFinance()
+                        + "|" + sale.getMonthlyPayment();
+
+                //Write our contract
+                bufferedWriter.write(saleContractData);
+
+                //Add a new line so it's not clumped together
+                bufferedWriter.newLine();
+                bufferedWriter.close();
 
             }catch (Exception e){
                 e.printStackTrace();
             }
         }
 
-        if(Contract instanceof LeaseContract){
-            //todo filewriter for lease
+
+
+        //If it's Lease Contract
+        if(contract instanceof LeaseContract){
+            try{
+                FileWriter fileWriter = new FileWriter("Contracts.csv" ,true);
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+                LeaseContract lease = (LeaseContract) contract;
+                //Write the Sales Contract information
+                String leaseContractData =
+
+                            "LEASE"
+                            + "|" + lease.getContractDate()
+                            + "|" + lease.getCustomerName()
+                            + "|" + lease.getCustomerEmail()
+                            + "|" + lease.getVehicleSold().getVIN()
+                            + "|" + lease.getVehicleSold().getYear()
+                            + "|" + lease.getVehicleSold().getMake()
+                            + "|" + lease.getVehicleSold().getModel()
+                            + "|" + lease.getVehicleSold().getVehicleType()
+                            + "|" + lease.getVehicleSold().getColor()
+                            + "|" + lease.getVehicleSold().getOdometer()
+                            + "|" + lease.getVehicleSold().getPrice()
+                            + "|" + lease.getEndingValue()
+                            + "|" + lease.getLeaseFee()
+                            + "|" + lease.getTotalPrice()
+                            + "|" + lease.getMonthlyPayment();
+
+                bufferedWriter.write(leaseContractData);
+                bufferedWriter.newLine();
+                bufferedWriter.close();
+
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
 
 
