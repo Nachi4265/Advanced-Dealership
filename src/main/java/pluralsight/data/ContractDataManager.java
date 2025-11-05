@@ -1,6 +1,9 @@
-package pluralsight;
+package pluralsight.data;
 
-import java.io.BufferedReader;
+import pluralsight.models.Contract;
+import pluralsight.models.LeaseContract;
+import pluralsight.models.SalesContract;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 

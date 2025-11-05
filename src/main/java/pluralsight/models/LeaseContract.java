@@ -1,6 +1,8 @@
-package pluralsight;
+package pluralsight.models;
 
-public class LeaseContract extends Contract{
+import pluralsight.userInterface.LoanCalculator;
+
+public class LeaseContract extends Contract {
 
     private double endingValue; //(50% of the original price)
     private double leaseFee; // (7% of the original price)

@@ -1,6 +1,6 @@
-package pluralsight;
+package pluralsight.models;
 
-import java.util.ArrayList;
+import pluralsight.userInterface.LoanCalculator;
 
 public class SalesContract extends Contract {
 

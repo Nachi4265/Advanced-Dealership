@@ -1,4 +1,4 @@
-package pluralsight;
+package pluralsight.models;
 public class Vehicle {
 
     //Private class variables

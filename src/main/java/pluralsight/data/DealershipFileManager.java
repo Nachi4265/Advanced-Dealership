@@ -1,10 +1,12 @@
-package pluralsight;
+package pluralsight.data;
+
+import pluralsight.models.Dealership;
+import pluralsight.models.Vehicle;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.ArrayList;
 
 public class DealershipFileManager {
 

@@ -1,7 +1,12 @@
-package pluralsight;
+package pluralsight.userInterface;
 
-import javax.swing.event.DocumentEvent;
-import java.time.LocalDate;
+import pluralsight.data.ContractDataManager;
+import pluralsight.models.Dealership;
+import pluralsight.data.DealershipFileManager;
+import pluralsight.models.LeaseContract;
+import pluralsight.models.SalesContract;
+import pluralsight.models.Vehicle;
+
 import java.util.ArrayList;
 
 public class UserInterface {
@@ -9,6 +14,7 @@ public class UserInterface {
     //Class level variable so all methods can access it
     Dealership dealership;
     DealershipFileManager dealershipFileManager;
+    AdminUserInterface adminUserInterface;
 
 
 
@@ -42,6 +48,7 @@ public class UserInterface {
             8 - Add a vehicle\n
             9 - Remove a vehicle\n
             10- Sell/Lease Vehicle\n
+            11- Admin Menu\n
             99 - Quit
             """;
 
@@ -80,6 +87,9 @@ public class UserInterface {
                 case 10:
                     processSellLeaseVehicleMenu();
                     break;
+                case 11:
+                    adminMenu();
+                    break;
                 case 99:
                     System.exit(0);
                     break;
@@ -90,6 +100,12 @@ public class UserInterface {
         }
     }
 
+    private void adminMenu() {
+        adminUserInterface = new AdminUserInterface();
+
+        adminUserInterface.adminDisplay();
+//        adminUserInterface.enterPassword();
+    }
 
 
     //a private displayVehicles() helper method.  Because you will be
@@ -186,7 +202,7 @@ public class UserInterface {
         int odometer = InputCollector.promptForInt("What is the mileage of the vehicle");
         double price = InputCollector.promptForDouble("What is your asking price for the vehicle");
 
-        System.out.println("Vehicle Added!");
+        System.out.println("Vehicle ");
         Vehicle vehicleToAdd = new Vehicle(VIN,year,make,model,vehicleType,color,odometer,price);
         dealership.addVehicle(vehicleToAdd);
 

@@ -1,4 +1,4 @@
-package pluralsight;
+package pluralsight.userInterface;
 
 public class LoanCalculator {
 

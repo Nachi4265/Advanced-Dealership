@@ -1,4 +1,4 @@
-package pluralsight;
+package pluralsight.models;
 
 import java.util.ArrayList;
 import java.util.Objects;
